@@ -1,7 +1,9 @@
-const form = document.querySelector( '.url-form' );
-const result = document.querySelector( '.result-section' );
+// Variables for input and result
+const query = document.querySelector( '.url-form' );
+const shortened = document.querySelector( '.result-section' );
 
-form.addEventListener( 'submit', event => {
+// Event Listener for submit button
+query.addEventListener( 'submit', event => {
     event.preventDefault();
 
     const input = document.querySelector( '.user-input' );
@@ -25,11 +27,12 @@ form.addEventListener( 'submit', event => {
         })
 
         .then( data => {
-            while ( result.hasChildNodes() ) {
-                result.removeChild( result.lastChild );
+            while ( shortened.hasChildNodes() ) {
+                shortened.removeChild( shortened.lastChild );
             }
 
-            result.insertAdjacentHTML( 'afterbegin', `
+            // Short URL
+            shortened.insertAdjacentHTML( 'afterbegin', `
                 <div class="result">
                     <a target="_blank" class="short-url" rel="noopener" href="/${data.short_id}">
                         ${location.origin}/${data.short_id}
